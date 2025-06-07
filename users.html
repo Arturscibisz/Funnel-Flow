@@ -1,0 +1,917 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FunnelFlow - Użytkownicy</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    :root {
+      --color-primary: #8a2be2;
+      --color-secondary: #ff1493;
+      --color-background: #0f0f1a;
+      --color-surface: #1a1a2e;
+      --color-text: #ffffff;
+      --color-text-secondary: #b3b3cc;
+      --color-border: #2a2a3c;
+      --color-success: #4ade80;
+      --color-warning: #fbbf24;
+      --color-danger: #f87171;
+      --border-radius: 12px;
+      --box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+      --font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    
+    /* Light mode */
+    body.light-mode {
+      --color-background: #f0f2f5;
+      --color-surface: #ffffff;
+      --color-text: #1a1a2e;
+      --color-text-secondary: #4a4a6a;
+      --color-border: #e0e0e0;
+      --box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: var(--font-family);
+      background-color: var(--color-background);
+      color: var(--color-text);
+      min-height: 100vh;
+      display: flex;
+    }
+    
+    /* Sidebar */
+    .sidebar {
+      width: 260px;
+      background-color: var(--color-surface);
+      border-right: 1px solid var(--color-border);
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      transition: all 0.3s ease;
+      z-index: 100;
+    }
+    
+    .logo {
+      font-size: 1.8rem;
+      font-weight: 700;
+      margin-bottom: 30px;
+      background: linear-gradient(90deg, var(--color-primary), var(--color-secondary));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      text-align: center;
+    }
+    
+    .nav-section {
+      margin-bottom: 20px;
+    }
+    
+    .nav-section-title {
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      color: var(--color-text-secondary);
+      margin-bottom: 10px;
+      padding-left: 10px;
+    }
+    
+    .nav-links {
+      list-style: none;
+    }
+    
+    .nav-link {
+      display: flex;
+      align-items: center;
+      padding: 12px 15px;
+      border-radius: var(--border-radius);
+      color: var(--color-text);
+      text-decoration: none;
+      transition: all 0.2s ease;
+      margin-bottom: 5px;
+    }
+    
+    .nav-link:hover {
+      background-color: rgba(138, 43, 226, 0.1);
+    }
+    
+    .nav-link.active {
+      background: linear-gradient(90deg, rgba(138, 43, 226, 0.2), rgba(255, 20, 147, 0.1));
+      border-left: 3px solid var(--color-primary);
+    }
+    
+    .nav-link i {
+      margin-right: 10px;
+      font-size: 1.1rem;
+      width: 20px;
+      text-align: center;
+    }
+    
+    .user-section {
+      margin-top: auto;
+      padding: 15px;
+      border-top: 1px solid var(--color-border);
+    }
+    
+    .user-info {
+      display: flex;
+      align-items: center;
+    }
+    
+    .user-avatar {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-right: 10px;
+    }
+    
+    .avatar-initials {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      color: white;
+      margin-right: 10px;
+    }
+    
+    .avatar-initials-small {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      color: white;
+      font-size: 0.8rem;
+    }
+    
+    .user-details {
+      flex: 1;
+    }
+    
+    .user-name {
+      font-weight: 600;
+      font-size: 0.9rem;
+    }
+    
+    .user-role {
+      color: var(--color-text-secondary);
+      font-size: 0.8rem;
+    }
+    
+    .user-actions {
+      margin-top: 10px;
+    }
+    
+    .logout-btn {
+      display: flex;
+      align-items: center;
+      padding: 8px 12px;
+      border-radius: var(--border-radius);
+      background-color: rgba(248, 113, 113, 0.1);
+      color: var(--color-danger);
+      border: 1px solid rgba(248, 113, 113, 0.2);
+      cursor: pointer;
+      transition: all 0.2s ease;
+      font-size: 0.8rem;
+      width: 100%;
+    }
+    
+    .logout-btn:hover {
+      background-color: rgba(248, 113, 113, 0.2);
+    }
+    
+    .logout-btn i {
+      margin-right: 8px;
+    }
+    
+    /* Main content */
+    .main-content {
+      flex: 1;
+      padding: 20px;
+      overflow-y: auto;
+    }
+    
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 30px;
+    }
+    
+    .page-title {
+      font-size: 1.8rem;
+      font-weight: 700;
+    }
+    
+    .header-actions {
+      display: flex;
+      align-items: center;
+    }
+    
+    .theme-toggle {
+      background: none;
+      border: none;
+      color: var(--color-text-secondary);
+      font-size: 1.2rem;
+      cursor: pointer;
+      margin-left: 15px;
+      transition: all 0.3s ease;
+    }
+    
+    .theme-toggle:hover {
+      color: var(--color-text);
+      transform: scale(1.1);
+    }
+    
+    /* Users content */
+    .users-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+    
+    .users-count {
+      font-size: 1rem;
+      color: var(--color-text-secondary);
+    }
+    
+    .add-user-btn {
+      display: flex;
+      align-items: center;
+      padding: 10px 15px;
+      background: linear-gradient(90deg, var(--color-primary), var(--color-secondary));
+      color: white;
+      border: none;
+      border-radius: var(--border-radius);
+      cursor: pointer;
+      font-weight: 600;
+      transition: all 0.2s ease;
+    }
+    
+    .add-user-btn:hover {
+      opacity: 0.9;
+      transform: translateY(-2px);
+    }
+    
+    .add-user-btn i {
+      margin-right: 8px;
+    }
+    
+    /* Filters */
+    .filters {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+      margin-bottom: 20px;
+      padding: 15px;
+      background-color: var(--color-surface);
+      border-radius: var(--border-radius);
+      box-shadow: var(--box-shadow);
+    }
+    
+    .filter-group {
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+      min-width: 150px;
+    }
+    
+    .filter-label {
+      font-size: 0.8rem;
+      margin-bottom: 5px;
+      color: var(--color-text-secondary);
+    }
+    
+    .filter-select {
+      padding: 8px 12px;
+      background-color: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--color-border);
+      border-radius: var(--border-radius);
+      color: var(--color-text);
+      font-size: 0.9rem;
+    }
+    
+    .light-mode .filter-select {
+      background-color: rgba(0, 0, 0, 0.02);
+    }
+    
+    .clear-filters-btn {
+      display: flex;
+      align-items: center;
+      padding: 8px 12px;
+      background-color: transparent;
+      border: 1px solid var(--color-border);
+      border-radius: var(--border-radius);
+      color: var(--color-text-secondary);
+      cursor: pointer;
+      font-size: 0.9rem;
+      align-self: flex-end;
+      margin-top: 20px;
+    }
+    
+    .clear-filters-btn:hover {
+      background-color: rgba(255, 255, 255, 0.05);
+      color: var(--color-text);
+    }
+    
+    .clear-filters-btn i {
+      margin-right: 5px;
+    }
+    
+    /* Users table */
+    .users-table-container {
+      background-color: var(--color-surface);
+      border-radius: var(--border-radius);
+      padding: 20px;
+      box-shadow: var(--box-shadow);
+      overflow-x: auto;
+    }
+    
+    .users-table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    
+    .users-table th,
+    .users-table td {
+      padding: 12px 15px;
+      text-align: left;
+      border-bottom: 1px solid var(--color-border);
+    }
+    
+    .users-table th {
+      font-weight: 600;
+      color: var(--color-text-secondary);
+      font-size: 0.9rem;
+    }
+    
+    .users-table tr:last-child td {
+      border-bottom: none;
+    }
+    
+    .users-table tr:hover {
+      background-color: rgba(255, 255, 255, 0.02);
+    }
+    
+    .light-mode .users-table tr:hover {
+      background-color: rgba(0, 0, 0, 0.02);
+    }
+    
+    .user-avatar-small {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+    
+    .user-avatar-container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 30px;
+      height: 30px;
+      margin-right: 10px;
+    }
+    
+    .user-info {
+      display: flex;
+      align-items: center;
+    }
+    
+    .user-name-table {
+      font-weight: 600;
+      font-size: 0.9rem;
+    }
+    
+    .user-email {
+      font-size: 0.8rem;
+      color: var(--color-text-secondary);
+    }
+    
+    .status-badge {
+      display: inline-block;
+      padding: 4px 8px;
+      border-radius: 12px;
+      font-size: 0.8rem;
+      font-weight: 500;
+    }
+    
+    .status-active {
+      background-color: rgba(74, 222, 128, 0.1);
+      color: var(--color-success);
+      border: 1px solid rgba(74, 222, 128, 0.2);
+    }
+    
+    .status-inactive {
+      background-color: rgba(248, 113, 113, 0.1);
+      color: var(--color-danger);
+      border: 1px solid rgba(248, 113, 113, 0.2);
+    }
+    
+    .action-buttons {
+      display: flex;
+      gap: 10px;
+    }
+    
+    .edit-btn,
+    .delete-btn {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: none;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    
+    .edit-btn {
+      background-color: rgba(138, 43, 226, 0.1);
+      color: var(--color-primary);
+    }
+    
+    .edit-btn:hover {
+      background-color: rgba(138, 43, 226, 0.2);
+    }
+    
+    .delete-btn {
+      background-color: rgba(248, 113, 113, 0.1);
+      color: var(--color-danger);
+    }
+    
+    .delete-btn:hover {
+      background-color: rgba(248, 113, 113, 0.2);
+    }
+    
+    /* Pagination */
+    .pagination {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-top: 20px;
+    }
+    
+    .pagination-btn {
+      width: 35px;
+      height: 35px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: var(--border-radius);
+      background-color: transparent;
+      border: 1px solid var(--color-border);
+      color: var(--color-text);
+      cursor: pointer;
+      margin: 0 5px;
+      transition: all 0.2s ease;
+    }
+    
+    .pagination-btn:hover:not(:disabled) {
+      background-color: rgba(138, 43, 226, 0.1);
+      border-color: var(--color-primary);
+    }
+    
+    .pagination-btn.active {
+      background: linear-gradient(90deg, rgba(138, 43, 226, 0.2), rgba(255, 20, 147, 0.1));
+      border-color: var(--color-primary);
+    }
+    
+    .pagination-btn:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+    
+    /* Modal */
+    .modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s ease;
+    }
+    
+    .modal.active {
+      opacity: 1;
+      visibility: visible;
+    }
+    
+    .modal-content {
+      background-color: var(--color-surface);
+      border-radius: var(--border-radius);
+      padding: 30px;
+      width: 100%;
+      max-width: 500px;
+      box-shadow: var(--box-shadow);
+      transform: translateY(-20px);
+      transition: all 0.3s ease;
+    }
+    
+    .modal.active .modal-content {
+      transform: translateY(0);
+    }
+    
+    .modal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+    
+    .modal-title {
+      font-size: 1.5rem;
+      font-weight: 700;
+    }
+    
+    .close-modal-btn {
+      background: none;
+      border: none;
+      color: var(--color-text-secondary);
+      font-size: 1.5rem;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    
+    .close-modal-btn:hover {
+      color: var(--color-text);
+      transform: scale(1.1);
+    }
+    
+    .modal-body {
+      margin-bottom: 20px;
+    }
+    
+    .form-group {
+      margin-bottom: 15px;
+    }
+    
+    .form-group label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: 500;
+    }
+    
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 100%;
+      padding: 10px 12px;
+      background-color: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--color-border);
+      border-radius: var(--border-radius);
+      color: var(--color-text);
+      font-size: 0.9rem;
+    }
+    
+    .light-mode .form-group input,
+    .light-mode .form-group select,
+    .light-mode .form-group textarea {
+      background-color: rgba(0, 0, 0, 0.02);
+    }
+    
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      outline: none;
+      border-color: var(--color-primary);
+    }
+    
+    .form-group textarea {
+      min-height: 100px;
+      resize: vertical;
+    }
+    
+    .checkbox-group {
+      display: flex;
+      align-items: center;
+      margin-top: 10px;
+    }
+    
+    .checkbox-group input {
+      width: auto;
+      margin-right: 10px;
+    }
+    
+    .modal-footer {
+      display: flex;
+      justify-content: flex-end;
+      gap: 10px;
+    }
+    
+    .cancel-btn {
+      padding: 10px 15px;
+      background-color: transparent;
+      border: 1px solid var(--color-border);
+      border-radius: var(--border-radius);
+      color: var(--color-text-secondary);
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    
+    .cancel-btn:hover {
+      background-color: rgba(255, 255, 255, 0.05);
+      color: var(--color-text);
+    }
+    
+    .submit-btn {
+      padding: 10px 15px;
+      background: linear-gradient(90deg, var(--color-primary), var(--color-secondary));
+      color: white;
+      border: none;
+      border-radius: var(--border-radius);
+      cursor: pointer;
+      font-weight: 600;
+      transition: all 0.2s ease;
+    }
+    
+    .submit-btn:hover {
+      opacity: 0.9;
+    }
+    
+    .confirm-delete-btn {
+      padding: 10px 15px;
+      background-color: var(--color-danger);
+      color: white;
+      border: none;
+      border-radius: var(--border-radius);
+      cursor: pointer;
+      font-weight: 600;
+      transition: all 0.2s ease;
+    }
+    
+    .confirm-delete-btn:hover {
+      opacity: 0.9;
+    }
+    
+    /* Mobile menu toggle */
+    .menu-toggle {
+      display: none;
+      background: none;
+      border: none;
+      color: var(--color-text);
+      font-size: 1.5rem;
+      cursor: pointer;
+      margin-right: 15px;
+    }
+    
+    /* Responsive */
+    @media (max-width: 768px) {
+      .sidebar {
+        position: fixed;
+        left: -260px;
+        height: 100vh;
+      }
+      
+      .sidebar.active {
+        left: 0;
+      }
+      
+      .menu-toggle {
+        display: block;
+      }
+      
+      .filters {
+        flex-direction: column;
+      }
+      
+      .users-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+      }
+      
+      .add-user-btn {
+        width: 100%;
+        justify-content: center;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <div class="logo">FunnelFlow</div>
+    
+    <div class="nav-section">
+      <div class="nav-section-title">Menu główne</div>
+      <ul class="nav-links">
+        <li><a href="dashboard.html" class="nav-link"><i class="fas fa-chart-line"></i> Dashboard</a></li>
+        <li><a href="users.html" class="nav-link active"><i class="fas fa-users"></i> Użytkownicy</a></li>
+        <li><a href="#" class="nav-link"><i class="fas fa-funnel-dollar"></i> Kampanie</a></li>
+        <li><a href="#" class="nav-link"><i class="fas fa-chart-pie"></i> Analityka</a></li>
+      </ul>
+    </div>
+    
+    <div class="nav-section">
+      <div class="nav-section-title">Ustawienia</div>
+      <ul class="nav-links">
+        <li><a href="#" class="nav-link"><i class="fas fa-cog"></i> Ustawienia konta</a></li>
+        <li><a href="#" class="nav-link"><i class="fas fa-credit-card"></i> Płatności</a></li>
+        <li><a href="#" class="nav-link superadmin-only"><i class="fas fa-database"></i> Baza danych</a></li>
+      </ul>
+    </div>
+    
+    <div class="user-section">
+      <div class="user-info">
+        <img src="" alt="Avatar" class="user-avatar">
+        <div class="user-details">
+          <div class="user-name">Jan Kowalski</div>
+          <div class="user-role">Administrator</div>
+        </div>
+      </div>
+      <div class="user-actions">
+        <button id="logout-btn" class="logout-btn"><i class="fas fa-sign-out-alt"></i> Wyloguj</button>
+      </div>
+    </div>
+  </aside>
+  
+  <!-- Main content -->
+  <main class="main-content">
+    <div class="header">
+      <button id="menu-toggle" class="menu-toggle">
+        <i class="fas fa-bars"></i>
+      </button>
+      <h1 class="page-title">Użytkownicy</h1>
+      <div class="header-actions">
+        <button class="theme-toggle">
+          <span class="toggle-icon">🌙</span>
+        </button>
+      </div>
+    </div>
+    
+    <!-- Users header -->
+    <div class="users-header">
+      <div class="users-count">
+        Liczba użytkowników: <span id="user-count">0</span>
+      </div>
+      <button class="add-user-btn">
+        <i class="fas fa-plus"></i> Dodaj użytkownika
+      </button>
+    </div>
+    
+    <!-- Filters -->
+    <div class="filters">
+      <div class="filter-group">
+        <label class="filter-label">Rola</label>
+        <select id="role-filter" class="filter-select">
+          <option value="all">Wszystkie role</option>
+          <option value="superadmin">Superadmin</option>
+          <option value="admin">Admin</option>
+          <option value="user">Użytkownik</option>
+        </select>
+      </div>
+      
+      <div class="filter-group">
+        <label class="filter-label">Status</label>
+        <select id="status-filter" class="filter-select">
+          <option value="all">Wszystkie statusy</option>
+          <option value="active">Aktywny</option>
+          <option value="inactive">Nieaktywny</option>
+        </select>
+      </div>
+      
+      <div class="filter-group">
+        <label class="filter-label">Data dodania</label>
+        <select id="date-filter" class="filter-select">
+          <option value="all">Wszystkie daty</option>
+          <option value="today">Dzisiaj</option>
+          <option value="week">W tym tygodniu</option>
+          <option value="month">W tym miesiącu</option>
+        </select>
+      </div>
+      
+      <button class="clear-filters-btn">
+        <i class="fas fa-times"></i> Wyczyść filtry
+      </button>
+    </div>
+    
+    <!-- Users table -->
+    <div class="users-table-container">
+      <table class="users-table">
+        <thead>
+          <tr>
+            <th>
+              <input type="checkbox" id="select-all">
+            </th>
+            <th>Użytkownik</th>
+            <th>Rola</th>
+            <th>Status</th>
+            <th>Data dodania</th>
+            <th>Firma</th>
+            <th>Akcje</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Dane będą wstawione przez JavaScript -->
+        </tbody>
+      </table>
+    </div>
+    
+    <!-- Pagination -->
+    <div class="pagination">
+      <button class="pagination-btn prev-btn" disabled>
+        <i class="fas fa-chevron-left"></i>
+      </button>
+      <button class="pagination-btn page-btn active">1</button>
+      <button class="pagination-btn page-btn">2</button>
+      <button class="pagination-btn page-btn">3</button>
+      <button class="pagination-btn page-btn">4</button>
+      <button class="pagination-btn page-btn">5</button>
+      <button class="pagination-btn next-btn">
+        <i class="fas fa-chevron-right"></i>
+      </button>
+    </div>
+    
+    <!-- Add User Modal -->
+    <div id="user-modal" class="modal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2 class="modal-title">Dodaj użytkownika</h2>
+          <button class="close-modal-btn">&times;</button>
+        </div>
+        <div class="modal-body">
+          <form id="user-form">
+            <div class="form-group">
+              <label for="firstName">Imię</label>
+              <input type="text" id="firstName" name="firstName" required>
+            </div>
+            <div class="form-group">
+              <label for="lastName">Nazwisko</label>
+              <input type="text" id="lastName" name="lastName" required>
+            </div>
+            <div class="form-group">
+              <label for="email">Email</label>
+              <input type="email" id="email" name="email" required>
+            </div>
+            <div class="form-group">
+              <label for="password">Hasło</label>
+              <input type="password" id="password" name="password" required>
+            </div>
+            <div class="form-group">
+              <label for="role">Rola</label>
+              <select id="role" name="role" required>
+                <option value="superadmin">Superadmin</option>
+                <option value="admin">Admin</option>
+                <option value="user" selected>Użytkownik</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="company">Firma</label>
+              <input type="text" id="company" name="company" value="FunnelFlow Sp. z o.o.">
+            </div>
+            <div class="checkbox-group">
+              <input type="checkbox" id="send-invitation" name="send-invitation" checked>
+              <label for="send-invitation">Wyślij zaproszenie na email</label>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button class="cancel-btn">Anuluj</button>
+          <button type="submit" form="user-form" class="submit-btn">Dodaj użytkownika</button>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Delete Confirmation Modal -->
+    <div id="delete-modal" class="modal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2 class="modal-title">Potwierdź usunięcie</h2>
+          <button class="close-modal-btn">&times;</button>
+        </div>
+        <div class="modal-body">
+          <p>Czy na pewno chcesz usunąć tego użytkownika? Ta operacja jest nieodwracalna.</p>
+        </div>
+        <div class="modal-footer">
+          <button class="cancel-btn">Anuluj</button>
+          <button class="confirm-delete-btn">Usuń</button>
+        </div>
+      </div>
+    </div>
+  </main>
+  
+  <script type="module" src="users.js"></script>
+</body>
+</html>

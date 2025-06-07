@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FunnelFlow - Ustawienia</title>
+  <link rel="stylesheet" href="./settings.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap">
+</head>
+<body>
+  <div class="dashboard-container">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <div class="logo">FunnelFlow</div>
+        <button class="menu-toggle" id="menu-toggle">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+      
+      <div class="user-profile">
+        <div class="avatar">
+          <img src="https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="User Avatar">
+          <span class="status-badge"></span>
+        </div>
+        <div class="user-info">
+          <h3>Jan Kowalski</h3>
+          <p>Administrator</p>
+        </div>
+      </div>
+      
+      <nav class="sidebar-nav">
+        <ul>
+          <li>
+            <a href="dashboard.html">
+              <span class="icon">📊</span>
+              <span class="text">Dashboard</span>
+            </a>
+          </li>
+          <li>
+            <a href="#">
+              <span class="icon">🔍</span>
+              <span class="text">Analityka</span>
+            </a>
+          </li>
+          <li>
+            <a href="#">
+              <span class="icon">📈</span>
+              <span class="text">Kampanie</span>
+            </a>
+          </li>
+          <li>
+            <a href="users.html">
+              <span class="icon">👥</span>
+              <span class="text">Użytkownicy</span>
+            </a>
+          </li>
+          <li class="active">
+            <a href="settings.html">
+              <span class="icon">⚙️</span>
+              <span class="text">Ustawienia</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+      
+      <div class="sidebar-footer">
+        <a href="index.html" class="logout-btn">
+          <span class="icon">🚪</span>
+          <span class="text">Wyloguj</span>
+        </a>
+        <div class="theme-toggle">
+          <div class="toggle-icon">🌙</div>
+        </div>
+      </div>
+    </aside>
+    
+    <!-- Main Content -->
+    <main class="main-content">
+      <header class="content-header">
+        <div class="header-left">
+          <h1>Ustawienia</h1>
+          <p class="date">Poniedziałek, 15 Maja 2025</p>
+        </div>
+        
+        <div class="header-right">
+          <div class="search-bar">
+            <input type="text" placeholder="Szukaj...">
+            <button class="search-btn">🔍</button>
+          </div>
+          
+          <div class="notifications">
+            <button class="notification-btn">🔔</button>
+            <span class="notification-badge">3</span>
+          </div>
+        </div>
+      </header>
+      
+      <!-- Settings Content -->
+      <div class="settings-content">
+        <!-- Settings Navigation -->
+        <div class="settings-nav">
+          <ul class="settings-tabs">
+            <li class="active" data-tab="profile">Profil</li>
+            <li data-tab="account">Konto</li>
+            <li data-tab="notifications">Powiadomienia</li>
+            <li data-tab="integrations">Integracje</li>
+            <li data-tab="billing">Płatności</li>
+          </ul>
+        </div>
+        
+        <!-- Settings Panels -->
+        <div class="settings-panels">
+          <!-- Profile Settings -->
+          <div class="settings-panel active" id="profile-panel">
+            <div class="panel-header">
+              <h2>Ustawienia profilu</h2>
+              <p>Zarządzaj swoimi danymi osobowymi i preferencjami</p>
+            </div>
+            
+            <div class="settings-card">
+              <div class="profile-header">
+                <div class="profile-avatar">
+                  <img src="https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="User Avatar">
+                  <div class="avatar-overlay">
+                    <button class="change-avatar-btn">Zmień</button>
+                  </div>
+                </div>
+                <div class="profile-info">
+                  <h3>Jan Kowalski</h3>
+                  <p>Administrator</p>
+                  <p class="profile-email">jan.kowalski@example.com</p>
+                </div>
+              </div>
+              
+              <form class="settings-form">
+                <div class="form-row">
+                  <div class="form-group">
+                    <label for="firstName">Imię</label>
+                    <input type="text" id="firstName" value="Jan" class="settings-input">
+                  </div>
+                  <div class="form-group">
+                    <label for="lastName">Nazwisko</label>
+                    <input type="text" id="lastName" value="Kowalski" class="settings-input">
+                  </div>
+                </div>
+                
+                <div class="form-group">
+                  <label for="email">Adres email</label>
+                  <input type="email" id="email" value="jan.kowalski@example.com" class="settings-input">
+                </div>
+                
+                <div class="form-group">
+                  <label for="phone">Numer telefonu</label>
+                  <input type="tel" id="phone" value="+48 123 456 789" class="settings-input">
+                </div>
+                
+                <div class="form-group">
+                  <label for="company">Firma</label>
+                  <input type="text" id="company" value="FunnelFlow Sp. z o.o." class="settings-input">
+                </div>
+                
+                <div class="form-group">
+                  <label for="bio">Bio</label>
+                  <textarea id="bio" class="settings-input" rows="4">Specjalista marketingu z 5-letnim doświadczeniem w optymalizacji lejków sprzedażowych i kampanii reklamowych.</textarea>
+                </div>
+                
+                <div class="form-actions">
+                  <button type="submit" class="save-btn">Zapisz zmiany</button>
+                  <button type="button" class="cancel-btn">Anuluj</button>
+                </div>
+              </form>
+            </div>
+          </div>
+          
+          <!-- Account Settings -->
+          <div class="settings-panel" id="account-panel">
+            <div class="panel-header">
+              <h2>Ustawienia konta</h2>
+              <p>Zarządzaj hasłem i bezpieczeństwem konta</p>
+            </div>
+            
+            <div class="settings-card">
+              <h3 class="section-title">Zmień hasło</h3>
+              <form class="settings-form">
+                <div class="form-group">
+                  <label for="currentPassword">Obecne hasło</label>
+                  <input type="password" id="currentPassword" class="settings-input" placeholder="••••••••••••••">
+                </div>
+                
+                <div class="form-group">
+                  <label for="newPassword">Nowe hasło</label>
+                  <input type="password" id="newPassword" class="settings-input" placeholder="••••••••••••••">
+                </div>
+                
+                <div class="form-group">
+                  <label for="confirmPassword">Potwierdź nowe hasło</label>
+                  <input type="password" id="confirmPassword" class="settings-input" placeholder="••••••••••••••">
+                </div>
+                
+                <div class="form-actions">
+                  <button type="submit" class="save-btn">Aktualizuj hasło</button>
+                </div>
+              </form>
+            </div>
+            
+            <div class="settings-card">
+              <h3 class="section-title">Weryfikacja dwuetapowa</h3>
+              <div class="toggle-option">
+                <div class="toggle-info">
+                  <h4>Włącz weryfikację dwuetapową</h4>
+                  <p>Dodatkowa warstwa zabezpieczeń dla Twojego konta</p>
+                </div>
+                <label class="toggle-switch">
+                  <input type="checkbox" checked>
+                  <span class="toggle-slider"></span>
+                </label>
+              </div>
+              
+              <button class="setup-2fa-btn">Skonfiguruj weryfikację dwuetapową</button>
+            </div>
+            
+            <div class="settings-card danger-zone">
+              <h3 class="section-title">Strefa niebezpieczna</h3>
+              <div class="danger-action">
+                <div class="danger-info">
+                  <h4>Usuń konto</h4>
+                  <p>Trwale usuń swoje konto i wszystkie dane</p>
+                </div>
+                <button class="delete-account-btn">Usuń konto</button>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Notifications Settings -->
+          <div class="settings-panel" id="notifications-panel">
+            <div class="panel-header">
+              <h2>Ustawienia powiadomień</h2>
+              <p>Zarządzaj preferencjami powiadomień</p>
+            </div>
+            
+            <div class="settings-card">
+              <h3 class="section-title">Powiadomienia email</h3>
+              
+              <div class="toggle-option">
+                <div class="toggle-info">
+                  <h4>Raporty tygodniowe</h4>
+                  <p>Otrzymuj cotygodniowe podsumowanie wyników</p>
+                </div>
+                <label class="toggle-switch">
+                  <input type="checkbox" checked>
+                  <span class="toggle-slider"></span>
+                </label>
+              </div>
+              
+              <div class="toggle-option">
+                <div class="toggle-info">
+                  <h4>Alerty konwersji</h4>
+                  <p>Powiadomienia o znaczących zmianach w konwersjach</p>
+                </div>
+                <label class="toggle-switch">
+                  <input type="checkbox" checked>
+                  <span class="toggle-slider"></span>
+                </label>
+              </div>
+              
+              <div class="toggle-option">
+                <div class="toggle-info">
+                  <h4>Aktualizacje produktu</h4>
+                  <p>Informacje o nowych funkcjach i aktualizacjach</p>
+                </div>
+                <label class="toggle-switch">
+                  <input type="checkbox">
+                  <span class="toggle-slider"></span>
+                </label>
+              </div>
+              
+              <div class="toggle-option">
+                <div class="toggle-info">
+                  <h4>Newsletter</h4>
+                  <p>Porady i najlepsze praktyki marketingowe</p>
+                </div>
+                <label class="toggle-switch">
+                  <input type="checkbox">
+                  <span class="toggle-slider"></span>
+                </label>
+              </div>
+            </div>
+            
+            <div class="settings-card">
+              <h3 class="section-title">Powiadomienia w aplikacji</h3>
+              
+              <div class="toggle-option">
+                <div class="toggle-info">
+                  <h4>Alerty konwersji</h4>
+                  <p>Powiadomienia o znaczących zmianach w konwersjach</p>
+                </div>
+                <label class="toggle-switch">
+                  <input type="checkbox" checked>
+                  <span class="toggle-slider"></span>
+                </label>
+              </div>
+              
+              <div class="toggle-option">
+                <div class="toggle-info">
+                  <h4>Komentarze i wzmianki</h4>
+                  <p>Gdy ktoś wspomni Cię w komentarzu lub notatce</p>
+                </div>
+                <label class="toggle-switch">
+                  <input type="checkbox" checked>
+                  <span class="toggle-slider"></span>
+                </label>
+              </div>
+              
+              <div class="toggle-option">
+                <div class="toggle-info">
+                  <h4>Aktualizacje zadań</h4>
+                  <p>Zmiany w przypisanych zadaniach</p>
+                </div>
+                <label class="toggle-switch">
+                  <input type="checkbox" checked>
+                  <span class="toggle-slider"></span>
+                </label>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Integrations Settings -->
+          <div class="settings-panel" id="integrations-panel">
+            <div class="panel-header">
+              <h2>Integracje</h2>
+              <p>Połącz swoje konto z innymi usługami</p>
+            </div>
+            
+            <div class="settings-card">
+              <div class="integration-item">
+                <div class="integration-logo">
+                  <svg class="custom-icon" viewBox="0 0 24 24" width="24" height="24">
+                    <path d="M12 4V20M4 12H20" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                    <path d="M4 4L20 20" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                  </svg>
+                </div>
+                <div class="integration-info">
+                  <h4>Google Analytics</h4>
+                  <p>Połącz swoje konto Google Analytics, aby importować dane</p>
+                </div>
+                <button class="connect-btn connected">Połączono</button>
+              </div>
+              
+              <div class="integration-item">
+                <div class="integration-logo">
+                  <svg class="custom-icon" viewBox="0 0 24 24" width="24" height="24">
+                    <rect x="4" y="6" width="16" height="12" rx="2" stroke="currentColor" stroke-width="2" fill="none"/>
+                    <path d="M4 9L12 15L20 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/>
+                  </svg>
+                </div>
+                <div class="integration-info">
+                  <h4>Mailchimp</h4>
+                  <p>Synchronizuj listy mailingowe i automatyzacje</p>
+                </div>
+                <button class="connect-btn">Połącz</button>
+              </div>
+              
+              <div class="integration-item">
+                <div class="integration-logo">
+                  <svg class="custom-icon" viewBox="0 0 24 24" width="24" height="24">
+                    <rect x="4" y="4" width="16" height="16" rx="2" stroke="currentColor" stroke-width="2" fill="none"/>
+                    <path d="M8 10H16M8 14H14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                  </svg>
+                </div>
+                <div class="integration-info">
+                  <h4>Slack</h4>
+                  <p>Otrzymuj powiadomienia i raporty bezpośrednio na Slack</p>
+                </div>
+                <button class="connect-btn connected">Połączono</button>
+              </div>
+              
+              <div class="integration-item">
+                <div class="integration-logo">
+                  <svg class="custom-icon" viewBox="0 0 24 24" width="24" height="24">
+                    <circle cx="12" cy="8" r="4" stroke="currentColor" stroke-width="2" fill="none"/>
+                    <path d="M5 21V19C5 16.7909 6.79086 15 9 15H15C17.2091 15 19 16.7909 19 19V21" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                  </svg>
+                </div>
+                <div class="integration-info">
+                  <h4>Shopify</h4>
+                  <p>Importuj dane o zamówieniach i klientach</p>
+                </div>
+                <button class="connect-btn">Połącz</button>
+              </div>
+              
+              <div class="integration-item">
+                <div class="integration-logo">
+                  <svg class="custom-icon" viewBox="0 0 24 24" width="24" height="24">
+                    <rect x="4" y="4" width="16" height="16" rx="2" stroke="currentColor" stroke-width="2" fill="none"/>
+                    <path d="M12 8V16M8 12H16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                  </svg>
+                </div>
+                <div class="integration-info">
+                  <h4>Facebook Ads</h4>
+                  <p>Analizuj wydajność kampanii reklamowych</p>
+                </div>
+                <button class="connect-btn">Połącz</button>
+              </div>
+            </div>
+            
+            <div class="settings-card">
+              <h3 class="section-title">API</h3>
+              <p class="api-description">Użyj naszego API, aby zintegrować FunnelFlow z własnymi systemami</p>
+              
+              <div class="api-key-section">
+                <div class="api-key-info">
+                  <h4>Klucz API</h4>
+                  <div class="api-key-display">
+                    <input type="password" value="sk_live_51KjH2bGhTr6iJnTZQlNWbZ9XYVQzSKuJy" readonly class="api-key-input">
+                    <button class="show-key-btn">Pokaż</button>
+                  </div>
+                </div>
+                <button class="regenerate-key-btn">Wygeneruj nowy klucz</button>
+              </div>
+              
+              <div class="api-docs-link">
+                <a href="#" class="docs-link">Zobacz dokumentację API</a>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Billing Settings -->
+          <div class="settings-panel" id="billing-panel">
+            <div class="panel-header">
+              <h2>Płatności</h2>
+              <p>Zarządzaj subskrypcją i metodami płatności</p>
+            </div>
+            
+            <div class="settings-card">
+              <div class="current-plan">
+                <div class="plan-badge premium">Premium</div>
+                <h3>Twój obecny plan</h3>
+                <p class="plan-price">299 zł <span>/ miesiąc</span></p>
+                <p class="renewal-info">Odnawia się 15 czerwca 2025</p>
+                <div class="plan-actions">
+                  <button class="upgrade-btn">Zmień plan</button>
+                  <button class="cancel-plan-btn">Anuluj plan</button>
+                </div>
+              </div>
+              
+              <div class="plan-features">
+                <h4>Zawiera:</h4>
+                <ul class="features-list">
+                  <li>Nieograniczona liczba lejków</li>
+                  <li>Zaawansowana analityka</li>
+                  <li>Niestandardowe raporty</li>
+                  <li>Integracje z narzędziami zewnętrznymi</li>
+                  <li>Priorytetowe wsparcie</li>
+                </ul>
+              </div>
+            </div>
+            
+            <div class="settings-card">
+              <h3 class="section-title">Metody płatności</h3>
+              
+              <div class="payment-method active">
+                <div class="payment-icon">
+                  <svg class="custom-icon" viewBox="0 0 24 24" width="24" height="24">
+                    <rect x="3" y="5" width="18" height="14" rx="2" stroke="currentColor" stroke-width="2" fill="none"/>
+                    <path d="M3 10H21" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                    <path d="M7 15H13" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                  </svg>
+                </div>
+                <div class="payment-info">
+                  <h4>Visa ****4242</h4>
+                  <p>Wygasa 12/2026</p>
+                </div>
+                <div class="payment-actions">
+                  <span class="default-badge">Domyślna</span>
+                  <button class="edit-payment-btn">Edytuj</button>
+                </div>
+              </div>
+              
+              <div class="payment-method">
+                <div class="payment-icon">
+                  <svg class="custom-icon" viewBox="0 0 24 24" width="24" height="24">
+                    <rect x="3" y="5" width="18" height="14" rx="2" stroke="currentColor" stroke-width="2" fill="none"/>
+                    <path d="M3 10H21" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                    <path d="M7 15H13" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                  </svg>
+                </div>
+                <div class="payment-info">
+                  <h4>Mastercard ****8888</h4>
+                  <p>Wygasa 08/2025</p>
+                </div>
+                <div class="payment-actions">
+                  <button class="make-default-btn">Ustaw jako domyślną</button>
+                  <button class="edit-payment-btn">Edytuj</button>
+                </div>
+              </div>
+              
+              <button class="add-payment-btn">Dodaj metodę płatności</button>
+            </div>
+            
+            <div class="settings-card">
+              <h3 class="section-title">Historia płatności</h3>
+              
+              <div class="billing-history">
+                <table class="billing-table">
+                  <thead>
+                    <tr>
+                      <th>Data</th>
+                      <th>Opis</th>
+                      <th>Kwota</th>
+                      <th>Status</th>
+                      <th>Faktura</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>15 Maj 2025</td>
+                      <td>Plan Premium</td>
+                      <td>299 zł</td>
+                      <td><span class="status-badge success">Opłacone</span></td>
+                      <td><a href="#" class="invoice-link">Pobierz</a></td>
+                    </tr>
+                    <tr>
+                      <td>15 Kwi 2025</td>
+                      <td>Plan Premium</td>
+                      <td>299 zł</td>
+                      <td><span class="status-badge success">Opłacone</span></td>
+                      <td><a href="#" class="invoice-link">Pobierz</a></td>
+                    </tr>
+                    <tr>
+                      <td>15 Mar 2025</td>
+                      <td>Plan Premium</td>
+                      <td>299 zł</td>
+                      <td><span class="status-badge success">Opłacone</span></td>
+                      <td><a href="#" class="invoice-link">Pobierz</a></td>
+                    </tr>
+                    <tr>
+                      <td>15 Lut 2025</td>
+                      <td>Plan Standard</td>
+                      <td>149 zł</td>
+                      <td><span class="status-badge success">Opłacone</span></td>
+                      <td><a href="#" class="invoice-link">Pobierz</a></td>
+                    </tr>
+                    <tr>
+                      <td>15 Sty 2025</td>
+                      <td>Plan Standard</td>
+                      <td>149 zł</td>
+                      <td><span class="status-badge success">Opłacone</span></td>
+                      <td><a href="#" class="invoice-link">Pobierz</a></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+  
+  <script type="module" src="./settings.js"></script>
+</body>
+</html>

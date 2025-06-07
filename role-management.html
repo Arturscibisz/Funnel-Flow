@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FunnelFlow - Zarządzanie rolami</title>
+  <link rel="stylesheet" href="./users.css">
+  <link rel="stylesheet" href="./role-management.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap">
+</head>
+<body>
+  <div class="dashboard-container">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <div class="logo">FunnelFlow</div>
+        <button class="menu-toggle" id="menu-toggle">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+      
+      <div class="user-profile">
+        <div class="avatar">
+          <img src="https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="User Avatar">
+          <span class="status-badge"></span>
+        </div>
+        <div class="user-info">
+          <h3>Jan Kowalski</h3>
+          <p>Administrator</p>
+        </div>
+      </div>
+      
+      <nav class="sidebar-nav">
+        <ul>
+          <li>
+            <a href="dashboard.html">
+              <span class="icon">📊</span>
+              <span class="text">Dashboard</span>
+            </a>
+          </li>
+          <li>
+            <a href="#">
+              <span class="icon">🔍</span>
+              <span class="text">Analityka</span>
+            </a>
+          </li>
+          <li>
+            <a href="#">
+              <span class="icon">📈</span>
+              <span class="text">Kampanie</span>
+            </a>
+          </li>
+          <li class="active">
+            <a href="users.html">
+              <span class="icon">👥</span>
+              <span class="text">Użytkownicy</span>
+            </a>
+            <ul class="submenu">
+              <li><a href="users.html">Lista użytkowników</a></li>
+              <li class="active"><a href="role-management.html">Zarządzanie rolami</a></li>
+            </ul>
+          </li>
+          <li>
+            <a href="settings.html">
+              <span class="icon">⚙️</span>
+              <span class="text">Ustawienia</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+      
+      <div class="sidebar-footer">
+        <a href="index.html" class="logout-btn">
+          <span class="icon">🚪</span>
+          <span class="text">Wyloguj</span>
+        </a>
+        <div class="theme-toggle">
+          <div class="toggle-icon">🌙</div>
+        </div>
+      </div>
+    </aside>
+    
+    <!-- Main Content -->
+    <main class="main-content">
+      <header class="content-header">
+        <div class="header-left">
+          <h1>Zarządzanie rolami</h1>
+          <p class="date">Poniedziałek, 15 Maja 2025</p>
+        </div>
+        
+        <div class="header-right">
+          <div class="search-bar">
+            <input type="text" placeholder="Szukaj roli...">
+            <button class="search-btn">🔍</button>
+          </div>
+          
+          <div class="notifications">
+            <button class="notification-btn">🔔</button>
+            <span class="notification-badge">3</span>
+          </div>
+        </div>
+      </header>
+      
+      <!-- Role Management Content -->
+      <div class="users-content">
+        <div class="roles-header">
+          <div class="roles-info">
+            <h2>Role i uprawnienia</h2>
+            <p>Zarządzaj rolami użytkowników i przypisanymi do nich uprawnieniami</p>
+          </div>
+          
+          <div class="users-actions">
+            <button class="add-user-btn" id="add-role-btn">
+              <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"></circle>
+                <line x1="12" y1="8" x2="12" y2="16"></line>
+                <line x1="8" y1="12" x2="16" y2="12"></line>
+              </svg>
+              Dodaj rolę
+            </button>
+          </div>
+        </div>
+        
+        <div class="roles-container">
+          <div class="role-card">
+            <div class="role-header superadmin">
+              <div class="role-icon">
+                <svg class="role-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                  <circle cx="9" cy="7" r="4"></circle>
+                  <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                  <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                </svg>
+              </div>
+              <div class="role-title">
+                <h3>Superadmin</h3>
+                <p>5 użytkowników</p>
+              </div>
+              <div class="role-actions">
+                <button class="action-btn edit-btn" title="Edytuj">
+                  <svg class="action-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+                    <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+                  </svg>
+                </button>
+              </div>
+            </div>
+            <div class="role-description">
+              <p>Pełny dostęp do wszystkich funkcji systemu, zarządzanie użytkownikami i rolami.</p>
+            </div>
+            <div class="role-permissions">
+              <h4>Uprawnienia</h4>
+              <div class="permissions-grid">
+                <div class="permission-item">
+                  <span class="permission-name">Zarządzanie użytkownikami</span>
+                  <span class="permission-status allowed">✓</span>
+                </div>
+                <div class="permission-item">
+                  <span class="permission-name">Zarządzanie rolami</span>
+                  <span class="permission-status allowed">✓</span>
+                </div>
+                <div class="permission-item">
+                  <span class="permission-name">Zarządzanie kampaniami</span>
+                  <span class="permission-status allowed">✓</span>
+                </div>
+                <div class="permission-item">
+                  <span class="permission-name">Analityka</span>
+                  <span class="permission-status allowed">✓</span>
+                </div>
+                <div class="permission-item">
+                  <span class="permission-name">Ustawienia systemu</span>
+                  <span class="permission-status allowed">✓</span>
+                </div>
+                <div class="permission-item">
+                  <span class="permission-name">Eksport danych</span>
+                  <span class="permission-status allowed">✓</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="role-card">
+            <div class="role-header admin">
+              <div class="role-icon">
+                <svg class="role-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                  <circle cx="9" cy="7" r="4"></circle>
+                  <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                  <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                </svg>
+              </div>
+              <div class="role-title">
+                <h3>Administrator</h3>
+                <p>8 użytkowników</p>
+              </div>
+              <div class="role-actions">
+                <button class="action-btn edit-btn" title="Edytuj">
+                  <svg class="action-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+                    <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+                  </svg>
+                </button>
+                <button class="action-btn delete-btn" title="Usuń">
+                  <svg class="action-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="3 6 5 6 21 6"></polyline>
+                    <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+                  </svg>
+                </button>
+              </div>
+            </div>
+            <div class="role-description">
+              <p>Zarządzanie użytkownikami, kampaniami i dostęp do analityki. Brak dostępu do ustawień systemu.</p>
+            </div>
+            <div class="role-permissions">
+              <h4>Uprawnienia</h4>
+              <div class="permissions-grid">
+                <div class="permission-item">
+                  <span class="permission-name">Zarządzanie użytkownikami</span>
+                  <span class="permission-status allowed">✓</span>
+                </div>
+                <div class="permission-item">
+                  <span class="permission-name">Zarządzanie rolami</span>
+                  <span class="permission-status denied">✕</span>
+                </div>
+                <div class="permission-item">
+                  <span class="permission-name">Zarządzanie kampaniami</span>
+                  <span class="permission-status allowed">✓</span>
+                </div>
+                <div class="permission-item">
+                  <span class="permission-name">Analityka</span>
+                  <span class="permission-status allowed">✓</span>
+                </div>
+                <div class="permission-item">
+                  <span class="permission-name">Ustawienia systemu</span>
+                  <span class="permission-status denied">✕</span>
+                </div>
+                <div class="permission-item">
+                  <span class="permission-name">Eksport danych</span>
+                  <span class="permission-status allowed">✓</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="role-card">
+            <div class="role-header manager">
+              <div class="role-icon">
+                <svg class="role-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                  <circle cx="9" cy="7" r="4"></circle>
+                  <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                  <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                </svg>
+              </div>
+              <div class="role-title">
+                <h3>Manager</h3>
+                <p>12 użytkowników</p>
+              </div>
+              <div class="role-actions">
+                <button class="action-btn edit-btn" title="Edytuj">
+                  <svg class="action-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+                    <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+                  </svg>
+                </button>
+                <button class="action-btn delete-btn" title="Usuń">
+                  <svg class="action-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="3 6 5 6 21 6"></polyline>
+                    <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+                  </svg>
+                </button>
+              </div>
+            </div>
+            <div class="role-description">
+              <p>Zarządzanie kampaniami i dostęp do analityki. Brak dostępu do zarządzania użytkownikami.</p>
+            </div>
+            <div class="role-permissions">
+              <h4>Uprawnienia</h4>
+              <div class="permissions-grid">
+                <div class="permission-item">
+                  <span class="permission-name">Zarządzanie użytkownikami</span>
+                  <span class="permission-status denied">✕</span>
+                </div>
+                <div class="permission-item">
+                  <span class="permission-name">Zarządzanie rolami</span>
+                  <span class="permission-status denied">✕</span>
+                </div>
+                <div class="permission-item">
+                  <span class="permission-name">Zarządzanie kampaniami</span>
+                  <span class="permission-status allowed">✓</span>
+                </div>
+                <div class="permission-item">
+                  <span class="permission-name">Analityka</span>
+                  <span class="permission-status allowed">✓</span>
+                </div>
+                <div class="permission-item">
+                  <span class="permission-name">Ustawienia systemu</span>
+                  <span class="permission-status denied">✕</span>
+                </div>
+                <div class="permission-item">
+                  <span class="permission-name">Eksport danych</span>
+                  <span class="permission-status allowed">✓</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="role-card">
+            <div class="role-header editor">
+              <div class="role-icon">
+                <svg class="role-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                  <circle cx="9" cy="7" r="4"></circle>
+                  <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                  <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                </svg>
+              </div>
+              <div class="role-title">
+                <h3>Edytor</h3>
+                <p>15 użytkowników</p>
+              </div>
+              <div class="role-actions">
+                <button class="action-btn edit-btn" title="Edytuj">
+                  <svg class="action-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+                    <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+                  </svg>
+                </button>
+                <button class="action-btn delete-btn" title="Usuń">
+                  <svg class="action-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="3 6 5 6 21 6"></polyline>
+                    <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+                  </svg>
+                </button>
+              </div>
+            </div>
+            <div class="role-description">
+              <p>Tworzenie i edycja kampanii. Dostęp do podstawowej analityki.</p>
+            </div>
+            <div class="role-permissions">
+              <h4>Uprawnienia</h4>
+              <div class="permissions-grid">
+                <div class="permission-item">
+                  <span class="permission-name">Zarządzanie użytkownikami</span>
+                  <span class="permission-status denied">✕</span>
+                </div>
+                <div class="permission-item">
+                  <span class="permission-name">Zarządzanie rolami</span>
+                  <span class="permission-status denied">✕</span>
+                </div>
+                <div class="permission-item">
+                  <span class="permission-name">Zarządzanie kampaniami</span>
+                  <span class="permission-status allowed">✓</span>
+                </div>
+                <div class="permission-item">
+                  <span class="permission-name">Analityka</span>
+                  <span class="permission-status partial">○</span>
+                </div>
+                <div class="permission-item">
+                  <span class="permission-name">Ustawienia systemu</span>
+                  <span class="permission-status denied">✕</span>
+                </div>
+                <div class="permission-item">
+                  <span class="permission-name">Eksport danych</span>
+                  <span class="permission-status denied">✕</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="role-card">
+            <div class="role-header viewer">
+              <div class="role-icon">
+                <svg class="role-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                  <circle cx="9" cy="7" r="4"></circle>
+                  <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                  <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                </svg>
+              </div>
+              <div class="role-title">
+                <h3>Obserwator</h3>
+                <p>20 użytkowników</p>
+              </div>
+              <div class="role-actions">
+                <button class="action-btn edit-btn" title="Edytuj">
+                  <svg class="action-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+                    <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+                  </svg>
+                </button>
+                <button class="action-btn delete-btn" title="Usuń">
+                  <svg class="action-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="3 6 5 6 21 6"></polyline>
+                    <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+                  </svg>
+                </button>
+              </div>
+            </div>
+            <div class="role-description">
+              <p>Tylko podgląd kampanii i podstawowej analityki. Brak możliwości edycji.</p>
+            </div>
+            <div class="role-permissions">
+              <h4>Uprawnienia</h4>
+              <div class="permissions-grid">
+                <div class="permission-item">
+                  <span class="permission-name">Zarządzanie użytkownikami</span>
+                  <span class="permission-status denied">✕</span>
+                </div>
+                <div class="permission-item">
+                  <span class="permission-name">Zarządzanie rolami</span>
+                  <span class="permission-status denied">✕</span>
+                </div>
+                <div class="permission-item">
+                  <span class="permission-name">Zarządzanie kampaniami</span>
+                  <span class="permission-status denied">✕</span>
+                </div>
+                <div class="permission-item">
+                  <span class="permission-name">Analityka</span>
+                  <span class="permission-status partial">○</span>
+                </div>
+                <div class="permission-item">
+                  <span class="permission-name">Ustawienia systemu</span>
+                  <span class="permission-status denied">✕</span>
+                </div>
+                <div class="permission-item">
+                  <span class="permission-name">Eksport danych</span>
+                  <span class="permission-status denied">✕</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Add/Edit Role Modal -->
+      <div class="modal" id="role-modal">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h2>Dodaj rolę</h2>
+            <button class="close-modal-btn">×</button>
+          </div>
+          <div class="modal-body">
+            <form id="role-form">
+              <div class="form-group">
+                <label for="roleName">Nazwa roli</label>
+                <input type="text" id="roleName" class="form-input" required>
+              </div>
+              
+              <div class="form-group">
+                <label for="roleDescription">Opis</label>
+                <textarea id="roleDescription" class="form-input" rows="3" required></textarea>
+              </div>
+              
+              <div class="form-group">
+                <label>Uprawnienia</label>
+                <div class="permissions-list">
+                  <div class="permission-checkbox">
+                    <input type="checkbox" id="perm-users">
+                    <label for="perm-users">Zarządzanie użytkownikami</label>
+                  </div>
+                  <div class="permission-checkbox">
+                    <input type="checkbox" id="perm-roles">
+                    <label for="perm-roles">Zarządzanie rolami</label>
+                  </div>
+                  <div class="permission-checkbox">
+                    <input type="checkbox" id="perm-campaigns">
+                    <label for="perm-campaigns">Zarządzanie kampaniami</label>
+                  </div>
+                  <div class="permission-checkbox">
+                    <input type="checkbox" id="perm-analytics">
+                    <label for="perm-analytics">Analityka</label>
+                  </div>
+                  <div class="permission-checkbox">
+                    <input type="checkbox" id="perm-settings">
+                    <label for="perm-settings">Ustawienia systemu</label>
+                  </div>
+                  <div class="permission-checkbox">
+                    <input type="checkbox" id="perm-export">
+                    <label for="perm-export">Eksport danych</label>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="form-actions">
+                <button type="submit" class="submit-btn">Dodaj rolę</button>
+                <button type="button" class="cancel-btn">Anuluj</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Delete Confirmation Modal -->
+      <div class="modal" id="delete-modal">
+        <div class="modal-content delete-modal-content">
+          <div class="modal-header">
+            <h2>Potwierdź usunięcie</h2>
+            <button class="close-modal-btn">×</button>
+          </div>
+          <div class="modal-body">
+            <div class="delete-icon">
+              <svg class="delete-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"></circle>
+                <line x1="12" y1="8" x2="12" y2="12"></line>
+                <line x1="12" y1="16" x2="12.01" y2="16"></line>
+              </svg>
+            </div>
+            <p class="delete-message">Czy na pewno chcesz usunąć tę rolę? Ta operacja jest nieodwracalna i może wpłynąć na użytkowników przypisanych do tej roli.</p>
+            <div class="form-actions">
+              <button class="confirm-delete-btn">Usuń</button>
+              <button class="cancel-btn">Anuluj</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+  
+  <script type="module" src="./role-management.js"></script>
+</body>
+</html>
