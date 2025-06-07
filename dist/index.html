@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FunnelFlow - Logowanie</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    :root {
+      --color-primary: #8a2be2;
+      --color-secondary: #ff1493;
+      --color-background: #0f0f1a;
+      --color-surface: #1a1a2e;
+      --color-text: #ffffff;
+      --color-text-secondary: #b3b3cc;
+      --color-border: #2a2a3c;
+      --color-success: #4ade80;
+      --color-warning: #fbbf24;
+      --color-danger: #f87171;
+      --border-radius: 12px;
+      --box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+      --font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    
+    /* Light mode */
+    body.light-mode {
+      --color-background: #f0f2f5;
+      --color-surface: #ffffff;
+      --color-text: #1a1a2e;
+      --color-text-secondary: #4a4a6a;
+      --color-border: #e0e0e0;
+      --box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: var(--font-family);
+      background-color: var(--color-background);
+      color: var(--color-text);
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-image: 
+        radial-gradient(circle at 10% 20%, rgba(138, 43, 226, 0.05) 0%, transparent 20%),
+        radial-gradient(circle at 90% 80%, rgba(255, 20, 147, 0.05) 0%, transparent 20%),
+        radial-gradient(circle at 50% 50%, rgba(138, 43, 226, 0.05) 0%, transparent 40%);
+      background-size: 200% 200%;
+      transition: background-position 0.5s ease;
+    }
+    
+    .login-container {
+      width: 100%;
+      max-width: 420px;
+      padding: 40px;
+      background-color: var(--color-surface);
+      border-radius: var(--border-radius);
+      box-shadow: var(--box-shadow);
+      position: relative;
+      overflow: hidden;
+      z-index: 1;
+    }
+    
+    .login-header {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+    
+    .login-header h1 {
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin-bottom: 10px;
+      background: linear-gradient(90deg, var(--color-primary), var(--color-secondary));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    
+    .login-header p {
+      color: var(--color-text-secondary);
+      font-size: 1rem;
+    }
+    
+    .login-form {
+      position: relative;
+    }
+    
+    .form-group {
+      margin-bottom: 20px;
+      position: relative;
+    }
+    
+    .form-group label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 500;
+    }
+    
+    .input-container {
+      position: relative;
+    }
+    
+    .input-glow-container {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      border-radius: var(--border-radius);
+      overflow: hidden;
+    }
+    
+    .form-group input {
+      width: 100%;
+      padding: 15px;
+      background-color: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--color-border);
+      border-radius: var(--border-radius);
+      color: var(--color-text);
+      font-size: 1rem;
+      transition: all 0.3s ease;
+      position: relative;
+      z-index: 1;
+    }
+    
+    .light-mode .form-group input {
+      background-color: rgba(0, 0, 0, 0.02);
+    }
+    
+    .form-group input:focus {
+      outline: none;
+      border-color: var(--color-primary);
+      box-shadow: 0 0 0 2px rgba(138, 43, 226, 0.2);
+    }
+    
+    .neon-button {
+      width: 100%;
+      padding: 15px;
+      margin-top: 10px;
+      background: linear-gradient(90deg, rgba(138, 43, 226, 0.5), rgba(255, 20, 147, 0.5));
+      border: none;
+      border-radius: var(--border-radius);
+      color: white;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+      z-index: 1;
+    }
+    
+    .neon-button::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+      transition: all 0.5s ease;
+      z-index: -1;
+    }
+    
+    .neon-button:hover::before {
+      left: 100%;
+    }
+    
+    .neon-button.hover-active {
+      background: linear-gradient(90deg, rgba(138, 43, 226, 0.8), rgba(255, 20, 147, 0.8));
+      box-shadow: 0 0 20px rgba(138, 43, 226, 0.5), 0 0 40px rgba(255, 20, 147, 0.3);
+    }
+    
+    .neon-button.error {
+      background: linear-gradient(90deg, rgba(248, 113, 113, 0.8), rgba(239, 68, 68, 0.8));
+      animation: shake 0.5s;
+    }
+    
+    @keyframes shake {
+      0%, 100% { transform: translateX(0); }
+      10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+      20%, 40%, 60%, 80% { transform: translateX(5px); }
+    }
+    
+    .glow-point {
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      background: radial-gradient(circle, rgba(255, 255, 255, 0.8) 0%, rgba(255, 20, 147, 0.3) 70%, transparent 100%);
+      border-radius: 50%;
+      filter: blur(2px);
+      opacity: 0;
+      pointer-events: none;
+      z-index: 2;
+    }
+    
+    .theme-toggle {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      background: none;
+      border: none;
+      color: var(--color-text-secondary);
+      font-size: 1.2rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    
+    .theme-toggle:hover {
+      color: var(--color-text);
+      transform: scale(1.1);
+    }
+    
+    @media (max-width: 480px) {
+      .login-container {
+        padding: 30px 20px;
+        margin: 0 15px;
+      }
+      
+      .login-header h1 {
+        font-size: 2rem;
+      }
+    }
+  </style>
+  <script type="module" crossorigin src="/assets/index-4d312721.js"></script>
+</head>
+<body>
+  <div class="login-container">
+    <button class="theme-toggle">
+      <span class="toggle-icon">🌙</span>
+    </button>
+    
+    <div class="login-header">
+      <h1>FunnelFlow</h1>
+      <p>Zaloguj się do panelu zarządzania</p>
+    </div>
+    
+    <form class="login-form">
+      <div class="form-group">
+        <label for="email">Email</label>
+        <div class="input-container">
+          <div id="email-glow" class="input-glow-container"></div>
+          <input type="email" id="email" name="email" placeholder="Twój adres email" required>
+        </div>
+      </div>
+      
+      <div class="form-group">
+        <label for="password">Hasło</label>
+        <div class="input-container">
+          <div id="password-glow" class="input-glow-container"></div>
+          <input type="password" id="password" name="password" placeholder="Twoje hasło" required>
+        </div>
+      </div>
+      
+      <button type="submit" class="neon-button">Zaloguj się</button>
+      <div class="glow-point"></div>
+    </form>
+  </div>
+  
+  
+</body>
+</html>
